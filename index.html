@@ -4,45 +4,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SOL Church | New Year's Registration</title>
-  <meta property="og:image" content="background.png" />
+  <title>SOL Church Camp 2026 Registration</title>
+  <!-- Open Graph / Social preview (absolute URLs required for Viber, WhatsApp, iMessage, etc.) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://trudan12345.github.io/New-Years-Registration/" />
+  <meta property="og:title" content="SOL Church Camp 2026" />
+  <meta property="og:description" content="Register for SOL Church Camp 2026!" />
+  <meta property="og:image" content="https://trudan12345.github.io/New-Years-Registration/images/desktop.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="background.png" />
+  <meta name="twitter:title" content="SOL Church Camp 2026" />
+  <meta name="twitter:description" content="Register for SOL Church Camp 2026!" />
+  <meta name="twitter:image" content="https://trudan12345.github.io/New-Years-Registration/images/desktop.png" />
+  <link rel="icon" type="image/png" href="images/desktop.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=1733691600" />
 </head>
 
 <body>
-  <section class="wallpaper-hero" aria-hidden="true"></section>
-
-  <div class="star-band" aria-hidden="true">
-    <span class="star star--left"></span>
-    <span class="star star--right"></span>
-  </div>
-
-  <section class="countdown-banner" aria-label="Countdown to the New Year">
-    <div class="countdown-stars" aria-hidden="true">
-      <span class="star star--count-left"></span>
-      <span class="star star--count-right"></span>
-      <span class="star star--count-top"></span>
-    </div>
-    <div class="countdown-simple" role="status" aria-live="polite">
-      <p class="countdown-heading" data-i18n="countdownHeading">
-        New Year starts in
-      </p>
-      <p class="countdown-time" id="countdownTime">--:--:--</p>
-      <p class="countdown-value" id="countdownNumber">-- days</p>
-    </div>
+  <section class="wallpaper-hero">
+    <img src="images/desktop.png?v=1733691600" alt="Church Camp Flyer" class="hero-image" />
   </section>
+
+
 
   <div class="page-shell">
     <form id="registrationForm" novalidate>
       <fieldset>
         <legend>
-          <span class="step-pill" data-i18n="step1Pill">Step 1</span>
           <span data-i18n="step1Label">Primary Contact</span>
         </legend>
         <div class="fields-grid">
@@ -62,35 +56,39 @@
           <label>
             <span data-i18n="spouseFirstNameLabel">Spouse First Name</span>
             <input type="text" name="spouseFirstName" id="spouseFirstName" placeholder="First name" />
+            <span data-i18n="spouseFirstNameNote"
+              style="font-size: 0.8rem; color: #2d352c; font-weight: 400; margin-top: -0.15rem;">Do not fill if not
+              applicable</span>
           </label>
         </div>
       </fieldset>
 
       <fieldset>
         <legend>
-          <span class="step-pill" data-i18n="step2Pill">Step 2</span>
           <span data-i18n="step2Label">Attendance Details</span>
         </legend>
         <p class="legend-subtext" data-i18n="step2Subtext">
-          Adults are 13+, children are under 13. Adjust totals for everyone
-          coming with you.
+          14+ are adults, 6-13 are children, 0-5 are free.
         </p>
         <div class="attendance-grid">
           <label>
-            <span data-i18n="adultsFieldLabel">Adults (13+)</span>
+            <span data-i18n="adultsFieldLabel">Adults (14+)</span>
             <input type="number" id="adultCount" name="adultCount" min="1" value="1" required />
           </label>
           <label>
-            <span data-i18n="childrenFieldLabel">Children (0-12)</span>
+            <span data-i18n="childrenFieldLabel">Children (6-13)</span>
             <input type="number" id="childCount" name="childCount" min="0" value="0" />
           </label>
+          <label>
+            <span data-i18n="toddlersFieldLabel">Children (0-5)</span>
+            <input type="number" id="toddlerCount" name="toddlerCount" min="0" value="0" />
+          </label>
         </div>
-        <p class="helper-text" data-i18n="priceNote">Adults $30 / Kids $15.</p>
+        <p class="helper-text" data-i18n="priceNote">14+ $100 / 6-13 $50 / 0-5 Free</p>
       </fieldset>
 
       <fieldset>
         <legend>
-          <span class="step-pill" data-i18n="step3Pill">Step 3</span>
           <span data-i18n="step3Label">First Names</span>
         </legend>
         <p class="legend-subtext" data-i18n="step3Subtext">
@@ -104,78 +102,56 @@
 
         <div id="childTable" class="attendee-table" style="display: none">
           <h3 data-i18n="childTableHeading">Child First Names</h3>
-          <p data-i18n="childTableNote">
-            We'll have something special for each child. List them here.
-          </p>
           <div class="grid-two" id="childList"></div>
+        </div>
+
+        <div id="toddlerTable" class="attendee-table" style="display: none">
+          <h3 data-i18n="toddlerTableHeading">Toddler First Names</h3>
+          <div class="grid-two" id="toddlerList"></div>
         </div>
       </fieldset>
 
       <div class="submit-panel">
-        <button type="submit" data-i18n="submitButton">Submit Registration</button>
+        <button type="submit" class="submit-image-btn">
+          <img src="images/tent_submit.jpg" alt="Submit Registration" />
+        </button>
         <div id="submit-loader" class="spinner"></div>
         <p id="status" class="status-message"></p>
       </div>
     </form>
 
     <section id="successPanel">
-      <div class="payment-tabs">
-        <button type="button" class="tab-button active" data-tab="card" data-i18n="tabCard">Pay with Card</button>
-        <button type="button" class="tab-button" data-tab="cashapp" data-i18n="tabCashApp">Cash App</button>
-      </div>
-
-      <div id="tab-card" class="tab-content active">
-        <div id="cardPayment" class="card-payment">
-          <div class="card-payment__header">
-            <div>
-              <p class="card-payment__eyebrow" data-i18n="cardPaymentEyebrow">
-                Secure card payment
-              </p>
-              <h3 class="card-payment__title" data-i18n="cardPaymentTitle">
-                Pay by card with Stripe
-              </h3>
-              <p class="card-payment__copy" data-i18n="cardPaymentCopy">
-                Use the tabs to pay with card or wallet. Powered by Stripe.
-              </p>
-            </div>
-            <div class="card-payment__pill">
-              <span data-i18n="cardPaymentDueLabel">Amount due</span>
-              <span id="feeDisplay" class="fee-text" style="display:none"></span>
-              <strong id="cardTotal">$0.00</strong>
-            </div>
+      <div id="cardPayment" class="card-payment">
+        <div class="card-payment__header">
+          <div>
+            <p class="card-payment__eyebrow" data-i18n="cardPaymentEyebrow">
+              Secure card payment
+            </p>
+            <h3 class="card-payment__title" data-i18n="cardPaymentTitle">
+              Pay by card with Stripe
+            </h3>
+            <p class="card-payment__copy" data-i18n="cardPaymentCopy">
+              Powered by Stripe.
+            </p>
           </div>
-          <div id="express-checkout-element"></div>
-          <form id="paymentForm" class="payment-form">
-            <div id="payment-loader" class="spinner"></div>
-            <div id="payment-element" class="payment-element"></div>
-            <button type="button" id="payNowButton" data-i18n="payButtonLabel">
-              Pay now
-            </button>
-            <p id="paymentStatus" class="status-message"></p>
-          </form>
+          <div class="card-payment__pill">
+            <span data-i18n="cardPaymentDueLabel">Amount due</span>
+            <span id="feeDisplay" class="fee-text" style="display:none"></span>
+            <strong id="cardTotal">$0.00</strong>
+          </div>
         </div>
-      </div>
+        <div id="express-checkout-element"></div>
+        <form id="paymentForm" class="payment-form">
+          <div id="payment-loader" class="spinner"></div>
+          <div id="payment-element" class="payment-element"></div>
+          <button type="button" id="payNowButton" data-i18n="payButtonLabel">
+            Pay now
+          </button>
+          <p id="paymentStatus" class="status-message"></p>
+        </form>
 
-      <div id="tab-cashapp" class="tab-content">
-        <div class="cash-app-payment">
-          <div class="cash-app-header">
-            <h3 data-i18n="cashAppTitle">Pay with Cash App</h3>
-            <div class="cash-app-total-pill">
-              <span data-i18n="cashAppTotalLabel">Total (No fees)</span>
-              <strong id="cashAppTotal">$0.00</strong>
-            </div>
-          </div>
-
-          <div class="qr-wrapper">
-            <img src="images/cash_app.png" alt="Cash App QR Code" class="qr-code" />
-            <p class="cash-tag">$solferndale</p>
-          </div>
-
-          <p class="instruction-text" data-i18n="cashAppInstruction">
-            Scan to pay specifically the amount above using Cash App to avoid fees.
-          </p>
-          <p class="instruction-text small" data-i18n="cashAppMemoNote">
-            Please include your full name in the memo line.
+        <div class="cash-note">
+          <p data-i18n="cashPaymentNote"><strong>Cash Option:</strong> You can bring cash directly to Daniel Trushkov.
           </p>
         </div>
       </div>
@@ -194,7 +170,7 @@
 
   <script src="https://js.stripe.com/v3" defer></script>
   <script src="main.js" defer
-    data-script-url="https://script.google.com/macros/s/AKfycbzXN9F5pEUOZlXMjfCr1_aEKBsY7uOobHZKVtwz4ET0jB3KfuJw1yny80FnDKozccOh/exec"
+    data-script-url="https://script.google.com/macros/s/AKfycbzjFDt0j0oMPfW8hjbAxbD4c04YoShGanqXChvlKq2MKXw_MDjfcQ4IQgIf2-K5_xTIVg/exec"
     data-stripe-publishable-key="pk_live_51SZjFHE4KhDCRihOAl3MwZDEAgM5jfAceD4hfcZNdN6h7yMdVHIH7iKmFXEsVvGeUZlaa1L1ODgOy6hDo0podqaz00CRc4r7No"></script>
 </body>
 
