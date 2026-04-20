@@ -1,6 +1,6 @@
 // === CONFIG ===
-const SPREADSHEET_ID = '1bsBo2OTwHR7bI2zlrhagV23wRTRkZdGnZdjqtZW4arM';
-const SHEET_NAME = 'New Year Family Registration';
+const SPREADSHEET_ID = '1mx2WmacCFqMNKUJIh_yLumd3IbRQGH1Kn9AQeZHtqJM';
+const SHEET_NAME = 'Family Registration';
 const STRIPE_SECRET_PROP = 'STRIPE_SECRET_KEY';
 const STRIPE_WEBHOOK_SECRET_PROP = 'STRIPE_WEBHOOK_SECRET';
 
@@ -66,6 +66,14 @@ function doPost(e) {
       childNames = asString(data.childNames);
     }
 
+    const toddlers = Number(data.toddlers ?? 0) || 0;
+    let toddlerNames = '';
+    if (Array.isArray(data.toddlerNames)) {
+      toddlerNames = data.toddlerNames.join(', ');
+    } else if (data.toddlerNames) {
+      toddlerNames = asString(data.toddlerNames);
+    }
+
     const totalCostNum = Number(data.totalCost || 0) || 0;
     // Use sheetCost if provided (subtotal without fees), otherwise fallback to totalCost
     const sheetCostNum = data.sheetCost ? (Number(data.sheetCost || 0) || totalCostNum) : totalCostNum;
@@ -78,8 +86,10 @@ function doPost(e) {
       phone,
       adults: String(adults),
       children: String(children),
+      toddlers: String(toddlers),
       adultNames,
       childNames,
+      toddlerNames,
 
       totalCost: String(totalCostNum),
       sheetCost: String(sheetCostNum) // Add to metadata just in case
@@ -88,20 +98,18 @@ function doPost(e) {
     // Create PaymentIntent with metadata
     const piResult = createPaymentIntent(totalCostNum, registrationData);
 
+    let paymentIntentId = 'N/A';
     if (piResult.error) {
       debugSheet.appendRow([new Date(), 'PAYMENT ERROR', piResult.error]);
-      return jsonResponse({
-        status: 'error',
-        paymentError: piResult.error
-      });
+    } else {
+      paymentIntentId = piResult.paymentIntentId;
+      debugSheet.appendRow([
+        new Date(),
+        'PAYMENT INTENT CREATED',
+        paymentIntentId,
+        'Data stored in metadata'
+      ]);
     }
-
-    debugSheet.appendRow([
-      new Date(),
-      'PAYMENT INTENT CREATED',
-      piResult.paymentIntentId,
-      'Data stored in metadata'
-    ]);
 
     // --- NEW: Write to Sheet IMMEDIATELY (Pending Payment) ---
     try {
@@ -122,7 +130,9 @@ function doPost(e) {
 
         sheetCostNum, // Use the fee-free amount for the sheet
         'Pending Payment', // Status column
-        piResult.paymentIntentId // Payment Intent ID for webhook matching
+        paymentIntentId, // Payment Intent ID for webhook matching
+        toddlers, // New Col 14
+        toddlerNames // New Col 15
       ]);
 
       debugSheet.appendRow([new Date(), 'IMMEDIATE WRITE SUCCESS', familyLabel]);
@@ -133,8 +143,8 @@ function doPost(e) {
 
     return jsonResponse({
       status: 'ok',
-      clientSecret: piResult.clientSecret,
-      paymentError: null
+      clientSecret: piResult.clientSecret || null,
+      paymentError: piResult.error || null
     });
 
   } catch (err) {

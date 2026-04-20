@@ -1,4 +1,4 @@
-const COSTS = { adult: 30, child: 15 };
+const COSTS = { adult: 100, child: 50, toddler: 0 };
 const TRANSLATIONS = {
   en: {
     countdownHeading: "New Year starts in",
@@ -6,24 +6,30 @@ const TRANSLATIONS = {
     step1Pill: "Step 1",
     step1Label: "Primary Contact",
     primaryFirstNameLabel: "Primary First Name",
+    firstNamePlaceholder: "First name",
+    lastNamePlaceholder: "Last name",
+    phonePlaceholder: "Phone number",
     lastNameLabel: "Last Name",
     mobilePhoneLabel: "Mobile Phone",
     spouseFirstNameLabel: "Spouse First Name",
+    spouseFirstNameNote: "Do not fill if not applicable",
     step2Pill: "Step 2",
     step2Label: "Attendance Details",
     step2Subtext:
-      "Adults are 13+, children are under 13. Adjust totals for everyone coming with you.",
-    adultsFieldLabel: "Adults (13+)",
-    childrenFieldLabel: "Children (0-12)",
-    priceNote: "Adults $30 / Kids $15.",
+      "14+ are adults, 6-13 are children, 0-5 are free.",
+    adultsFieldLabel: "Adults (14+)",
+    childrenFieldLabel: "Children (6-13)",
+    toddlersFieldLabel: "Children (0-5)",
+    priceNote: "14+ $100 / 6-13 $50 / 0-5 Free",
     primaryFirstNameRequired: "Primary first name is required.",
     lastNameRequired: "Last name is required.",
     phoneRequired: "Mobile phone is required.",
     step3Pill: "Step 3",
     step3Label: "First Names",
     step3Subtext: "Please enter the first name of each attendee.",
-    adultTableHeading: "Adult First Names",
-    childTableHeading: "Child First Names",
+    adultTableHeading: "Adult First Names (14+)",
+    childTableHeading: "Child First Names (6-13)",
+    toddlerTableHeading: "Toddler First Names (0-5)",
     childTableNote: "We'll have something special for each child. List them here.",
     submitButton: "Submit Registration",
     paymentHeading: "Submitted! You will be approved after payment.",
@@ -39,18 +45,25 @@ const TRANSLATIONS = {
     cardPaymentTitle: "Pay by card with Stripe",
     cardPaymentCopy: "Use the tabs to pay with card or wallet. Powered by Stripe.",
     cardPaymentDueLabel: "Amount due",
+    feeLabel: "fees",
     payButtonLabel: "Pay now",
     payButtonProcessing: "Processing...",
     paymentReadyNote: "Card form is ready. Your details are encrypted by Stripe.",
     paymentUnavailable: "Card payments are unavailable right now. Please use another option.",
     paymentSuccess: "Payment received! You're all set.",
     paymentMissingKey: "Stripe is not configured. Please contact the organizer.",
-    tabCard: "Pay with Card",
-    tabCashApp: "Cash App",
-    cashAppTitle: "Pay with Cash App",
-    cashAppTotalLabel: "Total (No fees)",
-    cashAppInstruction: "Scan to pay or use username $solferndale to avoid fees.",
-    cashAppMemoNote: "Please include your full name in the memo line.",
+    cashPaymentNote: "<strong>Cash Option:</strong> You can bring cash directly to Daniel Trushkov.",
+    adultLabel: "Adult",
+    childLabel: "Child",
+    toddlerLabel: "Toddler",
+    submittingMessage: "Submitting...",
+    genericError: "Unknown error",
+    tryAgainMessage: "Please try again.",
+    paymentLoadError: "Failed to load payment form. Please refresh and try again.",
+    paymentFailed: "Payment could not be completed.",
+    serverResponseError: "Unable to read server response.",
+    finalSuccessTitle: "You're all set!",
+    finalSuccessBody: "We hope to see you in a bit!",
   },
   es: {
     countdownHeading: "El Año Nuevo comienza en",
@@ -58,16 +71,21 @@ const TRANSLATIONS = {
     step1Pill: "Paso 1",
     step1Label: "Contacto principal",
     primaryFirstNameLabel: "Nombre del responsable",
+    firstNamePlaceholder: "Nombre",
+    lastNamePlaceholder: "Apellido",
+    phonePlaceholder: "Número de teléfono",
     lastNameLabel: "Apellido",
     mobilePhoneLabel: "Teléfono móvil",
     spouseFirstNameLabel: "Nombre del cónyuge",
+    spouseFirstNameNote: "No llenar si no aplica",
     step2Pill: "Paso 2",
     step2Label: "Detalles de asistencia",
     step2Subtext:
-      "Adultos son 13+, niños menores de 13. Ajusta los totales para todos tus acompañantes.",
-    adultsFieldLabel: "Adultos (13+)",
-    childrenFieldLabel: "Niños (0-12)",
-    priceNote: "Adultos $30 / Niños $15.",
+      "Adultos son 14+, niños 6-13, 0-5 gratis.",
+    adultsFieldLabel: "Adultos (14+)",
+    childrenFieldLabel: "Niños (6-13)",
+    toddlersFieldLabel: "Niños (0-5)",
+    priceNote: "14+ $100 / 6-13 $50 / 0-5 Gratis",
     primaryFirstNameRequired: "El nombre del responsable es obligatorio.",
     lastNameRequired: "El apellido es obligatorio.",
     phoneRequired: "El teléfono móvil es obligatorio.",
@@ -75,7 +93,8 @@ const TRANSLATIONS = {
     step3Label: "Nombres",
     step3Subtext: "Ingresa el primer nombre de cada asistente.",
     adultTableHeading: "Nombres de adultos",
-    childTableHeading: "Nombres de niños",
+    childTableHeading: "Nombres de niños (6-13)",
+    toddlerTableHeading: "Nombres de niños (0-5)",
     childTableNote: "Tenemos algo especial para cada niño. Escríbelos aquí.",
     submitButton: "Enviar registro",
     paymentHeading: "¡Enviado! Serás aprobado después del pago.",
@@ -91,18 +110,25 @@ const TRANSLATIONS = {
     cardPaymentTitle: "Paga con tarjeta con Stripe",
     cardPaymentCopy: "Usa las pestañas para pagar con tarjeta o wallet. Impulsado por Stripe.",
     cardPaymentDueLabel: "Monto a pagar",
+    feeLabel: "comisiones",
     payButtonLabel: "Pagar ahora",
     payButtonProcessing: "Procesando...",
     paymentReadyNote: "El formulario está listo. Tus datos están cifrados por Stripe.",
     paymentUnavailable: "Los pagos con tarjeta no están disponibles. Usa otra opción.",
     paymentSuccess: "¡Pago recibido! Todo listo.",
     paymentMissingKey: "Stripe no está configurado. Contacta al organizador.",
-    tabCard: "Pagar con tarjeta",
-    tabCashApp: "Cash App",
-    cashAppTitle: "Pagar con Cash App",
-    cashAppTotalLabel: "Total (sin comisiones)",
-    cashAppInstruction: "Escanea para pagar o usa el usuario $solferndale para evitar comisiones.",
-    cashAppMemoNote: "Por favor incluya su nombre completo en la nota.",
+    cashPaymentNote: "<strong>Opción en efectivo:</strong> Puedes entregar el efectivo directamente a Daniel Trushkov.",
+    adultLabel: "Adulto",
+    childLabel: "Niño",
+    toddlerLabel: "Pequeño",
+    submittingMessage: "Enviando...",
+    genericError: "Error desconocido",
+    tryAgainMessage: "Inténtalo de nuevo.",
+    paymentLoadError: "No se pudo cargar el formulario de pago. Actualiza e inténtalo de nuevo.",
+    paymentFailed: "No se pudo completar el pago.",
+    serverResponseError: "No se pudo leer la respuesta del servidor.",
+    finalSuccessTitle: "Todo listo",
+    finalSuccessBody: "Esperamos verte pronto.",
   },
   ru: {
     countdownHeading: "До Нового года осталось",
@@ -110,16 +136,21 @@ const TRANSLATIONS = {
     step1Pill: "Шаг 1",
     step1Label: "Контактные данные",
     primaryFirstNameLabel: "Имя ответственного",
+    firstNamePlaceholder: "Имя",
+    lastNamePlaceholder: "Фамилия",
+    phonePlaceholder: "Номер телефона",
     lastNameLabel: "Фамилия",
     mobilePhoneLabel: "Мобильный телефон",
     spouseFirstNameLabel: "Имя супруга(и)",
+    spouseFirstNameNote: "Не заполняйте, если не применимо",
     step2Pill: "Шаг 2",
     step2Label: "Детали посещения",
     step2Subtext:
-      "Взрослые — от 13 лет, дети — до 13. Укажите всех, кто придет с вами.",
-    adultsFieldLabel: "Взрослые (13+)",
-    childrenFieldLabel: "Дети (0-12)",
-    priceNote: "Взрослые $30 / Дети $15.",
+      "Взрослые — от 14 лет, дети — 6-13, 0-5 бесплатно.",
+    adultsFieldLabel: "Взрослые (14+)",
+    childrenFieldLabel: "Дети (6-13)",
+    toddlersFieldLabel: "Дети (0-5)",
+    priceNote: "14+ $100 / 6-13 $50 / 0-5 Бесплатно",
     primaryFirstNameRequired: "Имя ответственного обязательно.",
     lastNameRequired: "Фамилия обязательна.",
     phoneRequired: "Необходим мобильный телефон.",
@@ -127,7 +158,8 @@ const TRANSLATIONS = {
     step3Label: "Имена",
     step3Subtext: "Введите имена всех участников.",
     adultTableHeading: "Имена взрослых",
-    childTableHeading: "Имена детей",
+    childTableHeading: "Имена детей (6-13)",
+    toddlerTableHeading: "Имена детей (0-5)",
     childTableNote: "Для каждого ребенка приготовлен сюрприз — перечислите их.",
     submitButton: "Отправить регистрацию",
     paymentHeading: "Заявка отправлена! Подтверждение после оплаты.",
@@ -144,18 +176,25 @@ const TRANSLATIONS = {
     cardPaymentCopy:
       "Используйте вкладки, чтобы оплатить картой или кошельком. Обработку выполняет Stripe.",
     cardPaymentDueLabel: "Сумма к оплате",
+    feeLabel: "комиссия",
     payButtonLabel: "Оплатить",
     payButtonProcessing: "Обработка...",
     paymentReadyNote: "Форма оплаты готова. Ваши данные шифруются Stripe.",
     paymentUnavailable: "Оплата картой сейчас недоступна. Выберите другой способ.",
     paymentSuccess: "Платеж получен! Все готово.",
     paymentMissingKey: "Stripe не настроен. Свяжитесь с организатором.",
-    tabCard: "Оплата картой",
-    tabCashApp: "Cash App",
-    cashAppTitle: "Оплата через Cash App",
-    cashAppTotalLabel: "Итого (без комиссии)",
-    cashAppInstruction: "Сканируйте для оплаты или отправьте на $solferndale (без комиссии).",
-    cashAppMemoNote: "Пожалуйста, укажите ваше полное имя в пометке.",
+    cashPaymentNote: "<strong>Наличные:</strong> Вы можете передать наличные лично Даниилу Трушкову.",
+    adultLabel: "Взрослый",
+    childLabel: "Ребенок",
+    toddlerLabel: "Малыш",
+    submittingMessage: "Отправка...",
+    genericError: "Неизвестная ошибка",
+    tryAgainMessage: "Пожалуйста, попробуйте еще раз.",
+    paymentLoadError: "Не удалось загрузить форму оплаты. Обновите страницу и попробуйте снова.",
+    paymentFailed: "Не удалось завершить оплату.",
+    serverResponseError: "Не удалось прочитать ответ сервера.",
+    finalSuccessTitle: "Все готово!",
+    finalSuccessBody: "Надеемся скоро вас увидеть.",
   },
   uk: {
     countdownHeading: "До Нового року залишилося",
@@ -163,16 +202,21 @@ const TRANSLATIONS = {
     step1Pill: "Крок 1",
     step1Label: "Контактна особа",
     primaryFirstNameLabel: "Ім'я відповідального",
+    firstNamePlaceholder: "Ім'я",
+    lastNamePlaceholder: "Прізвище",
+    phonePlaceholder: "Номер телефону",
     lastNameLabel: "Прізвище",
     mobilePhoneLabel: "Мобільний телефон",
     spouseFirstNameLabel: "Ім'я чоловіка/дружини",
+    spouseFirstNameNote: "Не заповнюйте, якщо не застосовується",
     step2Pill: "Крок 2",
     step2Label: "Деталі відвідування",
     step2Subtext:
-      "Дорослі — від 13 років, діти — до 13. Вкажіть усіх, хто прийде з вами.",
-    adultsFieldLabel: "Дорослі (13+)",
-    childrenFieldLabel: "Діти (0-12)",
-    priceNote: "Дорослі $30 / Діти $15.",
+      "Дорослі — від 14 років, діти — 6-13, 0-5 безкоштовно.",
+    adultsFieldLabel: "Дорослі (14+)",
+    childrenFieldLabel: "Діти (6-13)",
+    toddlersFieldLabel: "Діти (0-5)",
+    priceNote: "Дорослі $100 / 6-13 $50 / 0-5 Безкоштовно",
     primaryFirstNameRequired: "Ім'я відповідального обов'язкове.",
     lastNameRequired: "Прізвище обов'язкове.",
     phoneRequired: "Потрібен мобільний телефон.",
@@ -180,7 +224,8 @@ const TRANSLATIONS = {
     step3Label: "Імена",
     step3Subtext: "Укажіть імена всіх учасників.",
     adultTableHeading: "Імена дорослих",
-    childTableHeading: "Імена дітей",
+    childTableHeading: "Імена дітей (6-13)",
+    toddlerTableHeading: "Імена дітей (0-5)",
     childTableNote: "Для кожної дитини готуємо щось особливе — впишіть їх тут.",
     submitButton: "Надіслати реєстрацію",
     paymentHeading: "Надіслано! Після оплати вас підтвердять.",
@@ -197,18 +242,25 @@ const TRANSLATIONS = {
     cardPaymentCopy:
       "Скористайтесь вкладками для оплати карткою чи гаманцем. Обробка від Stripe.",
     cardPaymentDueLabel: "Сума до оплати",
+    feeLabel: "комісія",
     payButtonLabel: "Сплатити",
     payButtonProcessing: "Обробка...",
     paymentReadyNote: "Форма оплати готова. Ваші дані шифрує Stripe.",
     paymentUnavailable: "Оплата карткою зараз недоступна. Скористайтесь іншим способом.",
     paymentSuccess: "Платіж отримано! Все готово.",
     paymentMissingKey: "Stripe не налаштований. Зв'яжіться з організатором.",
-    tabCard: "Оплата карткою",
-    tabCashApp: "Cash App",
-    cashAppTitle: "Оплата через Cash App",
-    cashAppTotalLabel: "Всього (без комісії)",
-    cashAppInstruction: "Скануйте для оплати або надішліть на $solferndale (без комісії).",
-    cashAppMemoNote: "Будь ласка, вкажіть ваше повне ім'я в примітці.",
+    cashPaymentNote: "<strong>Готівка:</strong> Ви можете передати готівку особисто Даниїлу Трушкову.",
+    adultLabel: "Дорослий",
+    childLabel: "Дитина",
+    toddlerLabel: "Малюк",
+    submittingMessage: "Надсилання...",
+    genericError: "Невідома помилка",
+    tryAgainMessage: "Будь ласка, спробуйте ще раз.",
+    paymentLoadError: "Не вдалося завантажити форму оплати. Оновіть сторінку й спробуйте знову.",
+    paymentFailed: "Не вдалося завершити оплату.",
+    serverResponseError: "Не вдалося прочитати відповідь сервера.",
+    finalSuccessTitle: "Усе готово!",
+    finalSuccessBody: "Сподіваємось скоро вас побачити.",
   },
 };
 
@@ -227,21 +279,39 @@ const getString = (key) =>
   (activeStrings && activeStrings[key]) || TRANSLATIONS.en[key] || "";
 
 const applyTranslations = () => {
+  document.documentElement.lang = activeLocale;
+
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.dataset.i18n;
     const text = getString(key);
     if (text) {
-      el.textContent = text;
+      if (key === 'cashPaymentNote') {
+        el.innerHTML = text; // User innerHTML for the bold tag
+      } else {
+        el.textContent = text;
+      }
     }
   });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.dataset.i18nPlaceholder;
+    const text = getString(key);
+    if (text) {
+      el.setAttribute("placeholder", text);
+    }
+  });
+
 };
 
 const form = document.getElementById("registrationForm");
 const adultInput = document.getElementById("adultCount");
 const childInput = document.getElementById("childCount");
+const toddlerInput = document.getElementById("toddlerCount");
 const adultList = document.getElementById("adultList");
 const childList = document.getElementById("childList");
+const toddlerList = document.getElementById("toddlerList");
 const childTable = document.getElementById("childTable");
+const toddlerTable = document.getElementById("toddlerTable");
 const statusEl = document.getElementById("status");
 const successPanel = document.getElementById("successPanel");
 const successTotalEl = document.getElementById("successTotal");
@@ -249,23 +319,21 @@ const primaryFirstNameEl = document.getElementById("primaryFirstName");
 const primaryLastNameEl = document.getElementById("primaryLastName");
 const spouseFirstNameEl = document.getElementById("spouseFirstName");
 const phoneInput = document.getElementById("phone");
-const countdownNumberEl = document.getElementById("countdownNumber");
-const countdownTimeEl = document.getElementById("countdownTime");
+
 const paymentForm = document.getElementById("paymentForm");
 const payButton = document.getElementById("payNowButton");
 const paymentStatusEl = document.getElementById("paymentStatus");
 const paymentElementContainer = document.getElementById("payment-element");
 const cardTotalEl = document.getElementById("cardTotal");
 const cardPaymentPanel = document.getElementById("cardPayment");
-const cashAppTotalEl = document.getElementById("cashAppTotal");
-const tabButtons = document.querySelectorAll(".tab-button");
-const tabContents = document.querySelectorAll(".tab-content");
 
 let stripeInstance = null;
 let stripeElements = null;
 let stripePaymentElement = null;
 let activeClientSecret = null;
 let activePublishableKey = "";
+let lastDisplayedTotal = 0;
+let lastDisplayedFees = 0;
 
 const requiredFields = [
   { input: primaryFirstNameEl, key: "primaryFirstNameRequired" },
@@ -297,9 +365,10 @@ requiredFields.forEach(({ input }) => {
 
 const mainScriptTag = document.querySelector('script[src$="main.js"]');
 const scriptURL = mainScriptTag?.getAttribute("data-script-url") ||
-  "https://script.google.com/macros/s/AKfycbzXN9F5pEUOZlXMjfCr1_aEKBsY7uOobHZKVtwz4ET0jB3KfuJw1yny80FnDKozccOh/exec";
+  "https://script.google.com/macros/s/AKfycbzjFDt0j0oMPfW8hjbAxbD4c04YoShGanqXChvlKq2MKXw_MDjfcQ4IQgIf2-K5_xTIVg/exec";
 const stripePublishableKey =
   (mainScriptTag?.getAttribute("data-stripe-publishable-key") || "").trim();
+
 
 const formatCurrency = (value) =>
   new Intl.NumberFormat(activeLocale, { style: "currency", currency: "USD" }).format(
@@ -307,6 +376,8 @@ const formatCurrency = (value) =>
   );
 
 const updateTotalDisplays = (total, fees = 0) => {
+  lastDisplayedTotal = Number(total) || 0;
+  lastDisplayedFees = Number(fees) || 0;
   const formattedTotal = formatCurrency(total);
   if (successTotalEl) {
     successTotalEl.textContent = formattedTotal;
@@ -315,16 +386,10 @@ const updateTotalDisplays = (total, fees = 0) => {
     cardTotalEl.textContent = formattedTotal;
   }
 
-  // Calculate subtotal (without fees) for Cash App
-  const subtotal = Math.max(0, total - fees);
-  if (cashAppTotalEl) {
-    cashAppTotalEl.textContent = formatCurrency(subtotal);
-  }
-
   const feeDisplay = document.getElementById("feeDisplay");
   if (feeDisplay) {
     if (fees > 0) {
-      feeDisplay.textContent = `+ ${formatCurrency(fees)} fees`;
+      feeDisplay.textContent = `+ ${formatCurrency(fees)} ${getString("feeLabel") || "fees"}`;
       feeDisplay.style.display = "block";
     } else {
       feeDisplay.style.display = "none";
@@ -441,7 +506,10 @@ const initializeStripePayment = async (clientSecret, totalCostValue, paymentErro
 
   } catch (err) {
     console.error("Stripe Initialization Error:", err);
-    showPaymentStatus("Failed to load payment form. Please refresh and try again.", "error");
+    showPaymentStatus(
+      getString("paymentLoadError") || "Failed to load payment form. Please refresh and try again.",
+      "error"
+    );
   }
 };
 
@@ -503,7 +571,7 @@ const confirmStripePayment = async () => {
     });
   } catch (err) {
     showPaymentStatus(
-      err.message || "Payment could not be completed.",
+      err.message || getString("paymentFailed") || "Payment could not be completed.",
       "error"
     );
     if (payButton) {
@@ -516,7 +584,10 @@ const confirmStripePayment = async () => {
   const { error, paymentIntent } = confirmationResult;
 
   if (error) {
-    showPaymentStatus(error.message || "Payment could not be completed.", "error");
+    showPaymentStatus(
+      error.message || getString("paymentFailed") || "Payment could not be completed.",
+      "error"
+    );
     if (payButton) {
       payButton.disabled = false;
       payButton.textContent = getString("payButtonLabel") || "Pay now";
@@ -559,6 +630,7 @@ const getFirstName = (value) => value.trim().split(/\s+/)[0] || "";
 const buildNameInputs = () => {
   const adultCount = Number(adultInput.value) || 0;
   const childCount = Number(childInput.value) || 0;
+  const toddlerCount = Number(toddlerInput.value) || 0;
 
   const existingAdultValues = Array.from(adultList.querySelectorAll("input")).map(
     (input) => input.value.trim()
@@ -566,9 +638,13 @@ const buildNameInputs = () => {
   const existingChildValues = Array.from(childList.querySelectorAll("input")).map(
     (input) => input.value.trim()
   );
+  const existingToddlerValues = Array.from(toddlerList.querySelectorAll("input")).map(
+    (input) => input.value.trim()
+  );
 
   adultList.innerHTML = "";
   childList.innerHTML = "";
+  toddlerList.innerHTML = "";
 
   const defaultAdults = [
     getFirstName(primaryFirstNameEl.value),
@@ -577,11 +653,11 @@ const buildNameInputs = () => {
 
   for (let i = 0; i < adultCount; i += 1) {
     const wrapper = document.createElement("label");
-    wrapper.textContent = `Adult ${i + 1}`;
+    wrapper.textContent = `${getString("adultLabel") || "Adult"} ${i + 1}`;
     const input = document.createElement("input");
     input.type = "text";
     input.required = true;
-    input.placeholder = "First name";
+    input.placeholder = getString("firstNamePlaceholder") || "First name";
 
     const defaultValue = defaultAdults[i];
     const previousValue = existingAdultValues[i] || "";
@@ -601,14 +677,27 @@ const buildNameInputs = () => {
   childTable.style.display = childCount ? "block" : "none";
   for (let i = 0; i < childCount; i += 1) {
     const wrapper = document.createElement("label");
-    wrapper.textContent = `Child ${i + 1}`;
+    wrapper.textContent = `${getString("childLabel") || "Child"} ${i + 1}`;
     const input = document.createElement("input");
     input.type = "text";
     input.required = true;
-    input.placeholder = "First name";
+    input.placeholder = getString("firstNamePlaceholder") || "First name";
     input.value = existingChildValues[i] || "";
     wrapper.appendChild(input);
     childList.appendChild(wrapper);
+  }
+
+  toddlerTable.style.display = toddlerCount ? "block" : "none";
+  for (let i = 0; i < toddlerCount; i += 1) {
+    const wrapper = document.createElement("label");
+    wrapper.textContent = `${getString("toddlerLabel") || "Toddler"} ${i + 1}`;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.required = true;
+    input.placeholder = getString("firstNamePlaceholder") || "First name";
+    input.value = existingToddlerValues[i] || "";
+    wrapper.appendChild(input);
+    toddlerList.appendChild(wrapper);
   }
 };
 
@@ -627,42 +716,6 @@ const enforceAdultMinimum = () => {
   buildNameInputs();
 };
 
-const getUpcomingNewYear = () => {
-  const now = new Date();
-  const nextYear =
-    now.getMonth() === 0 && now.getDate() === 1 ? now.getFullYear() : now.getFullYear() + 1;
-  return new Date(nextYear, 0, 1);
-};
-
-const updateCountdownDisplay = () => {
-  if (!countdownNumberEl) return;
-  const targetDate = getUpcomingNewYear();
-  const now = new Date();
-  const differenceMs = targetDate.getTime() - now.getTime();
-  const totalSeconds = Math.max(0, Math.floor(differenceMs / 1000));
-  const secondsPerDay = 60 * 60 * 24;
-  const secondsPerHour = 60 * 60;
-  const secondsPerMinute = 60;
-
-  const daysRemaining = Math.floor(totalSeconds / secondsPerDay);
-  const remainderAfterDays = totalSeconds % secondsPerDay;
-  const hoursRemaining = Math.floor(remainderAfterDays / secondsPerHour);
-  const remainderAfterHours = remainderAfterDays % secondsPerHour;
-  const minutesRemaining = Math.floor(remainderAfterHours / secondsPerMinute);
-  const secondsRemaining = remainderAfterHours % secondsPerMinute;
-
-  const nextDayText = String(daysRemaining);
-  const dayLabel = getString("daysLabel") || "days";
-  countdownNumberEl.textContent = `${nextDayText} ${dayLabel}`;
-
-  if (countdownTimeEl) {
-    const formatSegment = (value) => String(value).padStart(2, "0");
-    const timeString = `${formatSegment(hoursRemaining)}:${formatSegment(
-      minutesRemaining
-    )}:${formatSegment(secondsRemaining)}`;
-    countdownTimeEl.textContent = timeString;
-  }
-};
 
 primaryFirstNameEl.addEventListener("input", buildNameInputs);
 spouseFirstNameEl.addEventListener("input", enforceAdultMinimum);
@@ -672,6 +725,10 @@ adultInput.addEventListener("input", () => {
 });
 childInput.addEventListener("input", () => {
   if (childInput.value === "") return;
+  buildNameInputs();
+});
+toddlerInput.addEventListener("input", () => {
+  if (toddlerInput.value === "") return;
   buildNameInputs();
 });
 if (payButton) {
@@ -693,10 +750,12 @@ form.addEventListener("submit", async (event) => {
   }
 
   const subtotal =
-    Number(adultInput.value || 0) * COSTS.adult + Number(childInput.value || 0) * COSTS.child;
+    Number(adultInput.value || 0) * COSTS.adult +
+    Number(childInput.value || 0) * COSTS.child +
+    Number(toddlerInput.value || 0) * COSTS.toddler;
 
   // Calculate Stripe fees (2.9% + $0.30)
-  const fees = (subtotal * 0.029) + 0.50;
+  const fees = subtotal > 0 ? (subtotal * 0.029) + 0.30 : 0;
   const totalCostValue = subtotal + fees;
 
   const payload = {
@@ -706,10 +765,14 @@ form.addEventListener("submit", async (event) => {
     phone: phoneInput.value.trim(),
     adults: Number(adultInput.value) || 0,
     children: Number(childInput.value) || 0,
+    toddlers: Number(toddlerInput.value) || 0,
     adultNames: Array.from(adultList.querySelectorAll("input")).map((input) =>
       input.value.trim()
     ),
     childNames: Array.from(childList.querySelectorAll("input")).map((input) =>
+      input.value.trim()
+    ),
+    toddlerNames: Array.from(toddlerList.querySelectorAll("input")).map((input) =>
       input.value.trim()
     ),
     totalCost: String(totalCostValue),
@@ -721,7 +784,7 @@ form.addEventListener("submit", async (event) => {
   const submitLoader = document.getElementById("submit-loader");
   if (submitLoader) submitLoader.style.display = "block";
 
-  statusEl.textContent = "Submitting...";
+  statusEl.textContent = getString("submittingMessage") || "Submitting...";
   statusEl.classList.add("helper-text");
   statusEl.style.display = "block";
 
@@ -742,16 +805,18 @@ form.addEventListener("submit", async (event) => {
     try {
       responseData = await response.json();
     } catch (parseError) {
-      throw new Error("Unable to read server response.");
+      throw new Error(getString("serverResponseError") || "Unable to read server response.");
     }
 
     if (responseData.status !== "ok") {
-      throw new Error(responseData.message || "Submission failed.");
+      console.error("Submission Error Response:", responseData);
+      throw new Error(responseData.message || responseData.paymentError || "Submission failed.");
     }
 
     form.reset();
     adultInput.value = spouseFirstNameEl.value.trim() ? 2 : 1;
     childInput.value = 0;
+    toddlerInput.value = 0;
     buildNameInputs();
 
     statusEl.textContent = "";
@@ -771,7 +836,7 @@ form.addEventListener("submit", async (event) => {
     );
   } catch (err) {
     console.error(err);
-    statusEl.textContent = `Error: ${err.message || "Unknown error"}. Please try again.`;
+    statusEl.textContent = `Error: ${err.message || getString("genericError") || "Unknown error"}. ${getString("tryAgainMessage") || "Please try again."}`;
     statusEl.className = "status-message error";
     statusEl.style.display = "block";
     if (successPanel) {
@@ -786,24 +851,3 @@ form.addEventListener("submit", async (event) => {
 
 applyTranslations();
 buildNameInputs();
-updateCountdownDisplay();
-setInterval(updateCountdownDisplay, 1000);
-
-// Tab Switching Logic
-tabButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    // Remove active class from all buttons and contents
-    tabButtons.forEach(btn => btn.classList.remove("active"));
-    tabContents.forEach(content => content.classList.remove("active"));
-
-    // Add active class to clicked button
-    button.classList.add("active");
-
-    // Show corresponding content
-    const tabId = button.getAttribute("data-tab");
-    const content = document.getElementById(`tab-${tabId}`);
-    if (content) {
-      content.classList.add("active");
-    }
-  });
-});
