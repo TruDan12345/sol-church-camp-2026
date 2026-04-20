@@ -11,24 +11,25 @@
   <meta property="og:site_name" content="SOL Church Camp 2026" />
   <meta property="og:title" content="SOL Church Camp 2026" />
   <meta property="og:description" content="Register for SOL Church Camp 2026!" />
-  <meta property="og:image" content="https://trudan12345.github.io/sol-church-camp-2026/images/desktop.png?v=1733691600" />
-  <meta property="og:image:secure_url" content="https://trudan12345.github.io/sol-church-camp-2026/images/desktop.png?v=1733691600" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1920" />
-  <meta property="og:image:height" content="1080" />
+  <meta property="og:image" content="https://trudan12345.github.io/sol-church-camp-2026/images/desktop-social.jpg?v=20260420" />
+  <meta property="og:image:secure_url" content="https://trudan12345.github.io/sol-church-camp-2026/images/desktop-social.jpg?v=20260420" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="676" />
   <meta property="og:image:alt" content="SOL Church Camp 2026 flyer" />
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://trudan12345.github.io/sol-church-camp-2026/" />
   <meta name="twitter:title" content="SOL Church Camp 2026" />
   <meta name="twitter:description" content="Register for SOL Church Camp 2026!" />
-  <meta name="twitter:image" content="https://trudan12345.github.io/sol-church-camp-2026/images/desktop.png?v=1733691600" />
+  <meta name="twitter:image" content="https://trudan12345.github.io/sol-church-camp-2026/images/desktop-social.jpg?v=20260420" />
   <meta name="twitter:image:alt" content="SOL Church Camp 2026 flyer" />
   <meta name="apple-mobile-web-app-title" content="SOL Church Camp 2026" />
-  <link rel="icon" type="image/png" href="images/desktop.png?v=1733691600" />
-  <link rel="apple-touch-icon" href="https://trudan12345.github.io/sol-church-camp-2026/images/desktop.png?v=1733691600" />
+  <link rel="icon" type="image/png" href="images/icon-192.png?v=20260420" />
+  <link rel="apple-touch-icon" href="https://trudan12345.github.io/sol-church-camp-2026/images/apple-touch-icon.png?v=20260420" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="images/desktop-hero.webp?v=20260420" type="image/webp" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=1733691600" />
@@ -36,8 +37,11 @@
 
 <body>
   <section class="wallpaper-hero">
-    <img src="images/desktop.png?v=1733691600" alt="Church Camp Flyer" class="hero-image" fetchpriority="high"
-      decoding="async" width="1200" height="1600" />
+    <picture>
+      <source srcset="images/desktop-hero.webp?v=20260420" type="image/webp" />
+      <img src="images/desktop.png?v=1733691600" alt="Church Camp Flyer" class="hero-image" fetchpriority="high"
+        decoding="async" width="1200" height="676" />
+    </picture>
   </section>
 
 
@@ -125,8 +129,8 @@
 
       <div class="submit-panel">
         <button type="submit" class="submit-image-btn">
-          <img src="images/tent_submit.png" alt="Submit Registration" decoding="async" width="440"
-            height="220" />
+          <img src="images/tent_submit.webp?v=20260420" alt="Submit Registration" decoding="async" width="440"
+            height="293" />
         </button>
         <div id="submit-loader" class="spinner"></div>
         <p id="status" class="status-message"></p>
@@ -178,7 +182,7 @@
   </div>
 
   <footer id="successFooter" class="success-footer" style="display: none;">
-    <img src="images/solchurchlogo.png" alt="SOL Church Logo" class="final-success-logo" />
+    <img src="images/solchurchlogo.webp?v=20260420" alt="SOL Church Logo" class="final-success-logo" loading="lazy" width="256" height="256" />
   </footer>
 
   <script src="https://js.stripe.com/v3" defer></script>
